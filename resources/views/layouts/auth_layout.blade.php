@@ -28,6 +28,8 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
+
+    @yield('custom_style')
     <!-- =======================================================
     * Template Name: Bethany - v2.2.1
     * Template URL: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/
@@ -51,8 +53,17 @@
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li class="active"><a href="/">Home</a></li>
-                    <li class="active"><a href="/gallery">Gallery</a></li>
-                    <li><a href="{{ route('login') }}">Contact</a></li>
+                    <li class="drop-down active"><a >Committee</a>
+                        <ul>
+                            <li><a href="/view_central_committee">Central Committee</a></li>
+                            <li><a href="/view_zonal_committee">Zonal Committee</a></li>
+                        </ul>
+                    </li>
+                    @auth
+                        <li class="active"><a href="/dashboard">Dashboard</a></li>
+                    @else
+                        <li class="active"><a href="{{ route('login') }}">Login</a></li>
+                    @endauth
                     <li class="get-started"><a href="{{ route('register') }}">Register</a></li>
                 </ul>
             </nav><!-- .nav-menu -->
@@ -98,6 +109,8 @@
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
+
+@yield('extra_js')
 
 </body>
 

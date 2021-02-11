@@ -19,6 +19,10 @@ Route::get('/', function () {
 
 
 Route::POST('/contact_us_send_message','\App\Http\Controllers\Landing_Controllers\ContactUsController@contact_us_send_message');
+Route::GET('/landing_view_members','\App\Http\Controllers\Landing_Controllers\landing_view_members@landing_view_members');
+Route::GET('/view_gallery','\App\Http\Controllers\Landing_Controllers\GalleryController@view_gallery');
+Route::GET('/view_central_committee','\App\Http\Controllers\Landing_Controllers\ManageCommittee@view_central_committee');
+Route::GET('/view_zonal_committee','\App\Http\Controllers\Landing_Controllers\ManageCommittee@view_zonal_committee');
 
 
 
@@ -76,3 +80,11 @@ Route::post('/delete_station', '\App\Http\Controllers\Common_Controllers\GasStat
 // Contact Us
 Route::get('/view_contact_us_messages','\App\Http\Controllers\Landing_Controllers\ContactUsController@view_contact_us_messages')->middleware('auth');
 Route::POST('/view_individual_message','\App\Http\Controllers\Landing_Controllers\ContactUsController@view_individual_message')->middleware('auth');
+
+
+
+
+// Banners
+Route::get('/view_banners', '\App\Http\Controllers\Admin\BannerController@index')->middleware('auth');  // View banner
+Route::POST('/delete_banner', '\App\Http\Controllers\Admin\BannerController@delete_banner')->middleware('auth'); // Delete Banner
+Route::POST('/create_new_banner', '\App\Http\Controllers\Admin\BannerController@create_new_banner')->middleware('auth'); // Create Banner

@@ -247,7 +247,21 @@ class GasStationController extends Controller
 
 
         if($documents->isEmpty())
-            return view('common.view_station_documents')->with('data',$data);
+        {
+
+            /*$doc = array(
+                'tin' => null,
+                'nid' => null,
+                'license_copy' => null,
+            );
+            $data = array(
+                'found' =>false,
+                'station' => $station,
+                'data' => $doc
+            );*/
+            return redirect('/view_unverified_stations')->with('error','No Documents found for this station');
+        }
+
         else{
             $doc = array(
                 'tin' => null,

@@ -41,6 +41,9 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
+
+
+    @yield('custom_style')
     <!-- =======================================================
     * Template Name: Bethany - v2.2.1
     * Template URL: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/
@@ -64,6 +67,10 @@
 @include('inc.landing_footer')
 <!-- End Footer -->
 
+
+
+
+
 <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
 <!-- Vendor JS Files -->
@@ -80,7 +87,7 @@
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
-
+@yield('extra_js')
 </body>
 
 </html>

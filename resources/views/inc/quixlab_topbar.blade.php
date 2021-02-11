@@ -15,7 +15,7 @@
             <b class="logo-abbr"><img src="" alt=""> </b>
             <span class="logo-compact"><img src="" alt=""></span>
             <span class="brand-title text-center">
-                {{--<img src="/assets/img/logo.png" alt="" style="height: 40px;width: 60px;">--}}<span class="text-white font-weight-bold text-center">Dashboard</span>
+              <img src="{{url('storage/Landing_Page/association_logo/lpg_association.png')}}" alt="" style="height: 40px;width: 60px;"><span class="text-white font-weight-bold text-center">   Dashboard</span>
             </span>
         </a>
     </div>

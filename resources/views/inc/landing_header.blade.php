@@ -21,14 +21,19 @@
                     <li><a href="#team">Team</a></li>--}}
                     <li class="drop-down"><a href="">Committee</a>
                         <ul>
-                            <li><a href="">Central Committee</a></li>
-                            <li><a href="">Zonal Committee</a></li>
+                            <li><a href="/view_central_committee">Central Committee</a></li>
+                            <li><a href="/view_zonal_committee">Zonal Committee</a></li>
                         </ul>
                     </li>
-                    <li><a href="/view_members">Members</a></li>
-                    <li><a href="/contact_us">Contact</a></li>
-                    <li><a href="/gallery">Gallery</a></li>
-                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="/landing_view_members">Members</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/view_gallery">Gallery</a></li>
+                    @auth
+                        <li class=""><a href="/dashboard">Dashboard</a></li>
+                    @else
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                    @endauth
+
                     <li class="get-started"><a href="{{ route('register') }}">Register</a></li>
                 </ul>
             </nav><!-- .nav-menu -->

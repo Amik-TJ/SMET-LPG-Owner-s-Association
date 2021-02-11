@@ -1,4 +1,12 @@
 @extends('layouts.landing_layout')
+
+@section('custom_style')
+    {{--------------------------Owl Carousel starts------------------------------------}}
+    <link rel='stylesheet' href='css/owl_carousel/owl.carousel.css' >
+    <link rel='stylesheet' href='css/owl_carousel/owl.theme.default.css'>
+    {{-------------------------- Owl Carousel Ends ------------------------------------}}
+@endsection
+
 @section('content')
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
@@ -13,7 +21,46 @@
     <main id="main">
 
         <!-- ======= Clients Section ======= -->
-        <section id="clients" class="clients">
+
+
+
+        {{------------------------------------------Carousel Starts--------------------------------------}}
+
+        <section id="counts" class="counts mb-4">
+            <div class="container">
+                <div class="row counters">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="font-weight-bold font-time">Our Members</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @php
+            $banner = \App\Models\Banner::get();
+        @endphp
+
+        <div class="container">
+            <div class="row mx-2 mb-5">
+                <div class="owl-carousel owl-theme">
+                    @foreach($banner as $b)
+                        <div class="card text-center" style="border: none;">
+                            @if($b->banner_row == 1)
+                                <div class="item h-100">
+                                    <div class="d-flex align-items-center" style="height:200px; "><h1 class="text-center"><img class="img-fluid" src="{{url('storage'.$b->img_url)}}" alt="LPG Association"></h1></div>
+                                    <figcaption class="figure-caption text-center font-weight-bold text-success">{{$b->banner_title}}</figcaption>
+                                </div>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+
+
+
+    {{------------------------------------------Carousel Ends--------------------------------------}}
+        {{--<section id="clients" class="clients">
             <div class="container">
 
                 <div class="row">
@@ -45,10 +92,10 @@
                 </div>
 
             </div>
-        </section><!-- End Clients Section -->
+        </section><!-- End Clients Section -->--}}
 
         <!-- ======= About Section ======= -->
-        <section id="about" class="about">
+        <section id="about" class="about section-bg">
             <div class="container">
 
                 <div class="row content">
@@ -89,13 +136,17 @@
                         <span data-toggle="counter-up">380</span>
                         <p>LPG Stations</p>
                     </div>--}}
+                    @php
+                        $members = \App\Models\User::where('role',4)->where('verified',1)->count();
+                        $stations = \App\Models\GasStation::where('verified',1)->count();
+                    @endphp
                     <div class="col-lg-6 col-6 text-center">
-                        <span data-toggle="counter-up">186</span>
+                        <span data-toggle="counter-up">{{$members}}</span>
                         <p>Total Members</p>
                     </div>
 
                     <div class="col-lg-6 col-6 text-center">
-                        <span data-toggle="counter-up">380</span>
+                        <span data-toggle="counter-up">{{$stations}}</span>
                         <p>LPG Stations</p>
                     </div>
 
@@ -627,4 +678,30 @@
         </section>
         <!-- End Contact Section -->
     </main><!-- End #main -->
+@endsection
+
+
+@section('extra_js')
+    {{----------------------OWL Carousel---------------}}
+    <script src="/js/owl_carousel.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:40,
+            nav:false,
+            autoplay:true,
+            autoplayTimeout:2000,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:3
+                },
+                1000:{
+                    items:5
+                }
+            }
+        })
+    </script>
 @endsection

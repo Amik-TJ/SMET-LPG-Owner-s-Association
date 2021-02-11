@@ -34,8 +34,8 @@ class EditProfileController extends Controller
 
 
 
-        if(strlen($new_password) < 6)
-            return redirect('/edit_profile')->with('error','Password Must be at least 6 characters');
+        if(strlen($new_password) < 4)
+            return redirect('/edit_profile')->with('error','Password Must be at least 4 characters');
 
         $user = User::find($user_id);
 

@@ -66,7 +66,17 @@
 
             <li>
                 <a href="/view_contact_us_messages">
-                    <i class="icon-envelope-letter menu-icon"></i><span class="nav-text font-weight-bold">View Messages</span>
+                    <i class="icon-envelope-letter menu-icon"></i><span class="nav-text font-weight-bold">Inbox</span>
+                </a>
+            </li>
+            <li>
+                <a href="/view_committee">
+                    <i class="icon-user menu-icon"></i><span class="nav-text font-weight-bold">Manage Committee</span>
+                </a>
+            </li>
+            <li>
+                <a href="/view_banners">
+                    <i class="icon-cursor menu-icon"></i><span class="nav-text font-weight-bold">Banners</span>
                 </a>
             </li>
             @endif
