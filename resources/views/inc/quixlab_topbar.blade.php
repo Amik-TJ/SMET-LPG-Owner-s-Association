@@ -72,7 +72,7 @@
                         <div class="dropdown-content-body">
                             <ul>
                                 <li>
-                                    <a href=""><i class="icon-user"></i> <span>Edit Profile</span></a>
+                                    <a href="/edit_profile"><i class="icon-user"></i> <span>Edit Profile</span></a>
                                 </li>
                                 {{--<li>
                                     <a href="/see_more_message">

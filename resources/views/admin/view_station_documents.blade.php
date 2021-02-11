@@ -37,7 +37,7 @@
                                                 <thead>
                                                 <tr class=" text-white font-weight-bold" style="background-color: #009970;">
                                                         @if($doc['tin'])
-                                                            <th class="border-top-0">TIN Certificate</th>
+                                                            <th class="border-top-0 justify-content-center">TIN Certificate</th>
                                                         @endif
                                                         @if($doc['nid'])
                                                             <th class="border-top-0">NID Card</th>
@@ -55,18 +55,21 @@
 
                                                         @if($doc['tin'])
                                                             <td>
-                                                                <a href="{{url('storage'.$doc['tin']->url)}}" download><button  class="btn btn-success font-weight-bold my-3">TIN Download</button></a>
+                                                                <a href="{{url('storage'.$doc['tin']->url)}}" download><button  class="btn btn-success font-weight-bold my-3">Download</button></a>
+                                                                <a href="{{url('storage'.$doc['tin']->url)}}" target="_blank"><button  class="btn btn-info font-weight-bold my-3">View</button></a>
                                                             </td>
                                                         @endif
 
                                                         @if($doc['nid'])
                                                             <td>
-                                                                <a href="{{url('storage'.$doc['nid']->url)}}" download><button  class="btn btn-success font-weight-bold my-3">NID Download</button></a>
+                                                                <a href="{{url('storage'.$doc['nid']->url)}}" download><button  class="btn btn-success font-weight-bold my-3">Download</button></a>
+                                                                <a href="{{url('storage'.$doc['nid']->url)}}" target="_blank"><button  class="btn btn-info font-weight-bold my-3">View</button></a>
                                                             </td>
                                                         @endif
                                                         @if($doc['license_copy'])
                                                             <td>
-                                                                <a href="{{url('storage'.$doc['license_copy']->url)}}" download><button  class="btn btn-success font-weight-bold my-3">License Download</button></a>
+                                                                <a href="{{url('storage'.$doc['license_copy']->url)}}" download><button  class="btn btn-success font-weight-bold my-3">Download</button></a>
+                                                                <a href="{{url('storage'.$doc['license_copy']->url)}}" target="_blank"><button  class="btn btn-info font-weight-bold my-3">View</button></a>
                                                             </td>
                                                         @endif
                                                         @if(!$station->verified)

@@ -62,6 +62,13 @@
                     <li><a href="/view_verified_stations">Verified Stations</a></li>
                 </ul>
             </li>
+
+
+            <li>
+                <a href="/view_contact_us_messages">
+                    <i class="icon-envelope-letter menu-icon"></i><span class="nav-text font-weight-bold">View Messages</span>
+                </a>
+            </li>
             @endif
             @if($station_owner)
                 <li>

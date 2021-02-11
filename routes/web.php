@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::POST('/contact_us_send_message','\App\Http\Controllers\Landing_Controllers\ContactUsController@contact_us_send_message');
+
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -25,6 +30,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Common Routes
 Route::get('/dashboard', [App\Http\Controllers\Common_Controllers\DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::POST('/add_new_station', '\App\Http\Controllers\Common_Controllers\GasStationController@add_new_station')->middleware('auth');
+
+
+// Edit Profile
+
+Route::GET('/edit_profile','\App\Http\Controllers\Common_Controllers\EditProfileController@index')->middleware('auth');
+Route::POST('/change_password','\App\Http\Controllers\Common_Controllers\EditProfileController@change_password')->middleware('auth');
+Route::POST('/change_profile_picture','\App\Http\Controllers\Common_Controllers\EditProfileController@change_profile_picture')->middleware('auth');
+
+
+
 
 
 
@@ -55,3 +70,9 @@ Route::get('/view_verified_stations', '\App\Http\Controllers\Common_Controllers\
 Route::post('/verify_station', '\App\Http\Controllers\Common_Controllers\GasStationController@verify_station')->middleware('auth');
 Route::post('/view_station_documents', '\App\Http\Controllers\Common_Controllers\GasStationController@view_station_documents')->middleware('auth');
 Route::post('/delete_station', '\App\Http\Controllers\Common_Controllers\GasStationController@delete_station')->middleware('auth');
+
+
+
+// Contact Us
+Route::get('/view_contact_us_messages','\App\Http\Controllers\Landing_Controllers\ContactUsController@view_contact_us_messages')->middleware('auth');
+Route::POST('/view_individual_message','\App\Http\Controllers\Landing_Controllers\ContactUsController@view_individual_message')->middleware('auth');

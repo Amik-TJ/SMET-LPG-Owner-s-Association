@@ -26,7 +26,7 @@
                         </ul>
                     </li>
                     <li><a href="/view_members">Members</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/contact_us">Contact</a></li>
                     <li><a href="/gallery">Gallery</a></li>
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li class="get-started"><a href="{{ route('register') }}">Register</a></li>
