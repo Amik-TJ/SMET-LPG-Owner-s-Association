@@ -17,6 +17,7 @@ class GasStation extends Model
     protected $fillable = [
         'station_id',
         'owner_id',
+        'payment_id',
         'station_name',
         'station_email',
         'station_address',
@@ -38,8 +39,4 @@ class GasStation extends Model
     public function images() {
         return $this->hasMany('App\Models\Images', 'model_id');
     }
-    /*public function images()
-    {
-        return $this->morphMany('App\Models\Images', 'model');
-    }*/
 }

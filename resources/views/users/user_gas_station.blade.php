@@ -40,6 +40,7 @@
                                             <thead>
                                             <tr class=" text-white font-weight-bold" style="background-color: #009970;">
                                                 <th class="border-top-0">Station ID</th>
+                                                <th class="border-top-0">Membership ID</th>
                                                 <th class="border-top-0">Station Name</th>
                                                 <th class="border-top-0">Status</th>
                                                 <th class="border-top-0">Division</th>
@@ -49,6 +50,7 @@
                                                 <th class="border-top-0">Journey Date</th>
                                                 <th class="border-top-0">Conversion Workshop</th>
                                                 <th class="border-top-0">Verified</th>
+                                                <th class="border-top-0">Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -56,6 +58,7 @@
 
                                                 <tr>
                                                     <td>{{$station->station_id}}</td>
+                                                    <td>{{$station->membership_id}}</td>
                                                     <td>{{$station->station_name}}</td>
                                                     <td>
                                                         @if($station->station_status == "Up Coming")
@@ -75,12 +78,29 @@
                                                     <td>{{$station->contact_person_name}}</td>
                                                     <td>{{$station->contact_person_phone}}</td>
                                                     <td>{{(new DateTime($station->starting_date))->format("d-m-Y")}}</td>
-                                                    <td>{{$station->has_workshop}}</td>
+                                                    <td>
+                                                        @if($station->has_workshop)
+                                                            Yes
+                                                        @else
+                                                           No
+                                                        @endif
+                                                    </td>
                                                     <td>
                                                         @if($station->verified)
-                                                            yes
+                                                            <span class="font-weight-bold text-success">Yes</span>
                                                         @else
-                                                            No
+                                                            <span class="font-weight-bold text-danger">No</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if(!$station->payment_id)
+                                                            <form action="/view_payment_page" method="POST">
+                                                                @csrf
+                                                                <input type="hidden" value="{{$station->station_id}}" name="station_id">
+                                                                <button type="submit" class="btn btn-danger btn-sm">Make Payment</button>
+                                                            </form>
+                                                        @else
+                                                            <span class="font-weight-bold text-success">Payment Done</span>
                                                         @endif
                                                     </td>
                                                 </tr>

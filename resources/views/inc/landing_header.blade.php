@@ -14,8 +14,7 @@
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="#header">Home</a></li>
-                    <li><a href="#about">About</a></li>
+                    <li><a href="/view_gallery">Gallery</a></li>
                     {{--<li><a href="#services">Services</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
                     <li><a href="#team">Team</a></li>--}}
@@ -27,7 +26,9 @@
                     </li>
                     <li><a href="/landing_view_members">Members</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="/view_gallery">Gallery</a></li>
+                    <li><a href="">Download</a></li>
+                    <li><a href="">Notices</a></li>
+
                     @auth
                         <li class=""><a href="/dashboard">Dashboard</a></li>
                     @else

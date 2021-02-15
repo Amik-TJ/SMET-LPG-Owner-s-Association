@@ -64,6 +64,7 @@ class GasStationController extends Controller
 
 
 
+
         $request->validate([
             'photo' => 'mimes:pdf,jpg,png,jpeg',
             'tin' => 'mimes:pdf,jpg,png,jpeg',
@@ -91,23 +92,34 @@ class GasStationController extends Controller
         $verified = 0;
         $from = $request->input('from');
         $returning_url = Helper::get_returning_url($from);
+        $starting_date = $request->input('starting_date');
+
+
+
+        // Generating Membership ID
+        $parts = explode('-',$starting_date);
+        $year = substr($parts[0], 2, 3);
+        $month = $parts[1];
+        $count_station = GasStation::count() + 1;
+        $last_digit = sprintf("%04d", $count_station);
+        $membership_id = $year.$month.$last_digit;
 
 
 
 
-
-        // Getting Station ID for new Station
+        /*// Getting Station ID for new Station
         $station_no = GasStation::count();
         if($station_no < 1)
             $station_id = 1;
         else
-            $station_id = GasStation::max('station_id') + 1;
+            $station_id = GasStation::max('station_id') + 1;*/
 
 
         // Creating Station
         $station = new GasStation();
         $station->owner_id = $owner_id;
-        $station->station_id = $station_id;
+        //$station->station_id = $station_id;
+        $station->membership_id = $membership_id;
         $station->station_name = $station_name;
         $station->station_email = $station_email;
         $station->station_address = $station_address;
@@ -122,7 +134,7 @@ class GasStationController extends Controller
         $station->verified = $verified;
         $station->created_at = now();
         $station->save();
-
+        $station_id = $station->station_id;
 
 
 
@@ -166,14 +178,17 @@ class GasStationController extends Controller
     {
 
         $unverified_stations = DB::table('gas_station as g')
-                                    ->where('g.verified',0)
+                                    ->where('g.verified','0')
                                     ->where('g.archived',0)
                                     ->join('users as u','u.id', '=', 'g.owner_id')
+                                    ->select('g.station_id','g.membership_id','g.payment_id','g.owner_id','g.station_name','g.station_status','g.station_address','g.contact_person_name','g.contact_person_phone','g.division','g.starting_date','g.has_workshop','g.station_status','g.verified as gverified','u.name as uname')
                                     ->get();
 
         $data = array(
             'found' =>false
         );
+
+
 
         if($unverified_stations->isEmpty())
             return view('admin.unverified_stations')->with('data',$data);
@@ -214,7 +229,7 @@ class GasStationController extends Controller
     }
 
 
-    public function verify_station(Request $request)
+    /*public function verify_station(Request $request)
     {
         $station_id = $request->input('station_id');
         $station = GasStation::find($station_id);
@@ -223,7 +238,7 @@ class GasStationController extends Controller
 
         return redirect('/view_unverified_stations')->with('success','Station Name : '.$station->station_name.' ID : '.$station_id.' verified successfully');
 
-    }
+    }*/
 
     public function view_station_documents(Request $request)
     {
@@ -305,6 +320,14 @@ class GasStationController extends Controller
         $station->save();
 
         return redirect($returning_url)->with('success','Station No : '.$station_id.' Successfully Deleted');
+    }
+
+
+    public function view_payment_verification_page(Request $request)
+    {
+        $station_id = $request->input('station_id');
+
+        return view('admin.verify_payment')->with('data',$station_id);
     }
 
 }

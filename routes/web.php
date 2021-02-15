@@ -71,10 +71,9 @@ Route::POST('/register_new_station_owner', '\App\Http\Controllers\Admin\ManageSt
 // Manage Stations
 Route::get('/view_unverified_stations', '\App\Http\Controllers\Common_Controllers\GasStationController@view_unverified_stations')->middleware('auth');
 Route::get('/view_verified_stations', '\App\Http\Controllers\Common_Controllers\GasStationController@view_verified_stations')->middleware('auth');
-Route::post('/verify_station', '\App\Http\Controllers\Common_Controllers\GasStationController@verify_station')->middleware('auth');
 Route::post('/view_station_documents', '\App\Http\Controllers\Common_Controllers\GasStationController@view_station_documents')->middleware('auth');
 Route::post('/delete_station', '\App\Http\Controllers\Common_Controllers\GasStationController@delete_station')->middleware('auth');
-
+Route::post('/verify_payment_from_admin', '\App\Http\Controllers\Common_Controllers\PaymentController@verify_payment_from_admin')->middleware('auth');
 
 
 // Contact Us
@@ -88,3 +87,18 @@ Route::POST('/view_individual_message','\App\Http\Controllers\Landing_Controller
 Route::get('/view_banners', '\App\Http\Controllers\Admin\BannerController@index')->middleware('auth');  // View banner
 Route::POST('/delete_banner', '\App\Http\Controllers\Admin\BannerController@delete_banner')->middleware('auth'); // Delete Banner
 Route::POST('/create_new_banner', '\App\Http\Controllers\Admin\BannerController@create_new_banner')->middleware('auth'); // Create Banner
+
+
+
+
+// Payments
+Route::post('/view_payment_verification_page', '\App\Http\Controllers\Common_Controllers\PaymentController@view_payment_verification_page')->middleware('auth');
+Route::post('/view_payment_verification_page', '\App\Http\Controllers\Common_Controllers\PaymentController@view_payment_verification_page')->middleware('auth');
+Route::post('/view_make_payment_from_admin', '\App\Http\Controllers\Common_Controllers\PaymentController@view_make_payment_from_admin')->middleware('auth');
+
+
+
+// User Panel
+Route::POST('/view_payment_page', '\App\Http\Controllers\Common_Controllers\PaymentController@view_payment_page')->middleware('auth');
+Route::POST('/make_payment_from_user', '\App\Http\Controllers\Common_Controllers\PaymentController@make_payment_from_user')->middleware('auth');
+Route::POST('/make_and_verify_payment_from_admin', '\App\Http\Controllers\Common_Controllers\PaymentController@make_and_verify_payment_from_admin')->middleware('auth');

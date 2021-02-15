@@ -40,6 +40,7 @@
                                                 <thead>
                                                 <tr class=" text-white font-weight-bold" style="background-color: #009970;">
                                                     <th class="border-top-0">Station ID</th>
+                                                    <th class="border-top-0">Membership ID</th>
                                                     <th class="border-top-0">Station Name</th>
                                                     <th class="border-top-0">Owner ID</th>
                                                     <th class="border-top-0">Owner Name</th>
@@ -61,9 +62,10 @@
 
                                                     <tr>
                                                         <td>{{$station->station_id}}</td>
+                                                        <td>{{$station->membership_id}}</td>
                                                         <td>{{$station->station_name}}</td>
                                                         <td>{{$station->owner_id}}</td>
-                                                        <td>{{$station->name}}</td>
+                                                        <td>{{$station->uname}}</td>
                                                         <td>
                                                             @if($station->station_status == "Up Coming")
                                                                 <i class="fa fa-circle-o text-primary  mr-2"></i>
@@ -82,12 +84,18 @@
                                                         <td>{{$station->contact_person_name}}</td>
                                                         <td>{{$station->contact_person_phone}}</td>
                                                         <td>{{(new DateTime($station->starting_date))->format("d-m-Y")}}</td>
-                                                        <td>{{$station->has_workshop}}</td>
                                                         <td>
-                                                            @if($station->verified)
-                                                                yes
+                                                            @if($station->has_workshop == 1)
+                                                                Yes
                                                             @else
                                                                 No
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @if($station->gverified == 0)
+                                                                No
+                                                            @else
+                                                                Yes
                                                             @endif
                                                         </td>
                                                         <td class="text-center align-middle">
@@ -98,11 +106,19 @@
                                                             </form>
                                                         </td>
                                                         <td class="text-center align-middle">
-                                                            <form action="/verify_station" method="POST">
+                                                            @if($station->payment_id)
+                                                            <form action="/view_payment_verification_page" method="POST">
                                                                 @csrf
                                                                 <input type="hidden" name="station_id" value="{{$station->station_id}}">
                                                                 <button type="submit" class="btn btn-sm btn-warning">Verify</button>
                                                             </form>
+                                                            @else
+                                                                <form action="/view_make_payment_from_admin" method="POST">
+                                                                    @csrf
+                                                                    <input type="hidden" value="{{$station->station_id}}" name="station_id">
+                                                                    <button type="submit" class="btn btn-info btn-sm">Make Payment</button>
+                                                                </form>
+                                                            @endif
                                                         </td>
                                                         <td class="text-center align-middle">
                                                             <form action="/delete_station" method="POST">
